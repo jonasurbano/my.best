@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="domain.periodicidad">
+	
+	<class name="PeriodicidadSemanal" table="PERIODICIDAD_SEMANAL">
+		<id name="id" column="ID_PERIODICIDAD_SEMANAL">
+			<generator class="native" />
+		</id>
+		<property name="lunes" />
+		<property name="martes" />
+		<property name="miercoles" />
+		<property name="jueves" />
+		<property name="viernes" />
+		<property name="sabado" />
+		<property name="domingo" />
+		
+	 </class>
+
+</hibernate-mapping>

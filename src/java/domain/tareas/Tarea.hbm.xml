@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="domain.tareas">
+
+    <class name="Tarea" table="TAREAS">
+        <id name="id" column="ID_TAREA" >
+            <generator class="increment" />
+        </id>
+        <property name="tarea" length="100" />
+        <property name="descripcion" />
+        <property name="fechaInicio" column="FECHA_INICIO" type="timestamp" />
+        <property name="fechaFin" column="FECHA_FIN" type="timestamp" not-null="false" />
+        <property name="duracionEstimada" column="DURACION_ESTIMADA" />
+        <property name="horasPorSesion" column="HORAS_ESTIMADAS_POR_SESION" />
+        <property name="realizada" />
+
+        <property name="prioridad">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">domain.enums.PrioridadTarea</param>
+            </type>
+        </property>
+		
+        <bag name="sesiones" table="SESIONES" inverse="true" lazy="false" cascade="all">
+            <key column="ID_TAREA_FK" />
+                <one-to-many class="domain.sesiones.Sesion" />
+            </bag>
+            <many-to-one name="periodicidadSemanal" lazy="false"
+                class="domain.periodicidad.PeriodicidadSemanal">
+                <column name="ID_PERIODICIDAD_SEMANAL" not-null="false" />
+            </many-to-one>
+	</class>
+
+</hibernate-mapping>
